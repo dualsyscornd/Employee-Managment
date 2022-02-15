@@ -77,10 +77,32 @@
                                     <a href="pages/email/inbox.html" class="nav-link">Employee</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/email/read.html" class="nav-link">Read</a>
+                                    <a href="pages/email/read.html" class="nav-link">Attendence</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/email/compose.html" class="nav-link">Compose</a>
+                                    <a href="pages/email/compose.html" class="nav-link">Leave</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item nav-category">Project Managment</li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#task" role="button" aria-expanded="false"
+                            aria-controls="task">
+                            <i class="link-icon" data-feather="mail"></i>
+                            <span class="link-title">Project</span>
+                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        </a>
+                        <div class="collapse" id="task">
+                            <ul class="nav sub-menu">
+                                <li class="nav-item">
+                                    <a href="pages/email/inbox.html" class="nav-link">Project</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/email/read.html" class="nav-link">Assign Task</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/email/compose.html" class="nav-link">Leave</a>
                                 </li>
                             </ul>
                         </div>
@@ -394,7 +416,7 @@
                                         </a>
                                     </li>
                                     <li class="dropdown-item py-2">
-                                        <a href="javascript:;" class="text-body ms-0">
+                                        <a href="{{ url('Logout')}}" class="text-body ms-0">
                                             <i class="me-2 icon-md" data-feather="log-out"></i>
                                             <span>Log Out</span>
                                         </a>
@@ -411,11 +433,12 @@
             </div>
 
             <footer
-        class="footer d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3 border-top small">
-        <p class="text-muted mb-1 mb-md-0">Copyright © 2021 <a href="https://www.dualsysco.com"
-            target="_blank">Dualsysco.com</a>.</p>
-        <p class="text-muted">Handcrafted With <i class="mb-1 text-primary ms-1 icon-sm" data-feather="heart"></i></p>
-      </footer>
+                class="footer d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3 border-top small">
+                <p class="text-muted mb-1 mb-md-0">Copyright © 2021 <a href="https://www.dualsysco.com"
+                        target="_blank">Dualsysco.com</a>.</p>
+                <p class="text-muted">Handcrafted With <i class="mb-1 text-primary ms-1 icon-sm"
+                        data-feather="heart"></i></p>
+            </footer>
         </div>
     </div>
 
