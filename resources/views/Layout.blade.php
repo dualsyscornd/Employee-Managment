@@ -31,11 +31,21 @@
     <link rel="stylesheet" href="{{url('public/assets/vendors/flag-icon-css/css/flag-icon.min.css')}}">
     <!-- endinject -->
 
+    <!-- datatable  -->
+  <link rel="stylesheet" href="{{url('public/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">
+
+    <!-- datatable  -->
+
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{url('public/assets/css/demo1/style.css')}}">
     <!-- End layout styles -->
 
     <link rel="shortcut icon" href="{{url('public/assets/images/favicon.png ')}}" />
+    <!-- core:js -->
+    <script src="{{url('public/assets/vendors/core/core.js')}}"></script>
+    <script src="{{url('public/assets/vendors/datatables.net/jquery.dataTables.js')}}"></script>
+    <script src="{{url('public/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
+    <!-- endinject -->
 </head>
 
 <body>
@@ -74,7 +84,7 @@
                         <div class="collapse" id="emails">
                             <ul class="nav sub-menu">
                                 <li class="nav-item">
-                                    <a href="pages/email/inbox.html" class="nav-link">Employee</a>
+                                    <a href="{{route('Employees')}}" class="nav-link">Employee</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="pages/email/read.html" class="nav-link">Attendence</a>
@@ -110,40 +120,7 @@
                 </ul>
             </div>
         </nav>
-        <nav class="settings-sidebar">
-            <div class="sidebar-body">
-                <a href="#" class="settings-sidebar-toggler">
-                    <i data-feather="settings"></i>
-                </a>
-                <h6 class="text-muted mb-2">Sidebar:</h6>
-                <div class="mb-3 pb-3 border-bottom">
-                    <div class="form-check form-check-inline">
-                        <input type="radio" class="form-check-input" name="sidebarThemeSettings" id="sidebarLight"
-                            value="sidebar-light" checked>
-                        <label class="form-check-label" for="sidebarLight">
-                            Light
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input type="radio" class="form-check-input" name="sidebarThemeSettings" id="sidebarDark"
-                            value="sidebar-dark">
-                        <label class="form-check-label" for="sidebarDark">
-                            Dark
-                        </label>
-                    </div>
-                </div>
-                <div class="theme-wrapper">
-                    <h6 class="text-muted mb-2">Light Theme:</h6>
-                    <a class="theme-item active" href="../demo1/dashboard.html">
-                        <img src="{{url('public/assets/images/screenshots/light.jpg')}}" alt="light theme">
-                    </a>
-                    <h6 class="text-muted mb-2">Dark Theme:</h6>
-                    <a class="theme-item" href="../demo2/dashboard.html">
-                        <img src="{{url('public/assets/images/screenshots/dark.jpg')}}" alt="light theme">
-                    </a>
-                </div>
-            </div>
-        </nav>
+
         <!-- partial -->
 
         <div class="page-wrapper">
@@ -444,9 +421,7 @@
 
 
 
-    <!-- core:js -->
-    <script src="{{url('public/assets/vendors/core/core.js')}}"></script>
-    <!-- endinject -->
+
 
     <!-- Plugin js for this page -->
     <script src="{{url('public/assets/vendors/chartjs/Chart.min.js')}}"></script>
