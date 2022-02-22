@@ -81,9 +81,7 @@
 </div>
 <!-- Employee Store Modal  -->
 
-
-
-
+<button type="button" onclick="CLearIcon()"> Clear</button>
 
 
 <!-- Ajax Script -->
@@ -121,7 +119,10 @@ $(document).ready(function() {
                 "searchable": false,
                 "orderable": false,
             },
-        ]
+        ],
+        "initComplete":function( settings, json){
+            feather.replace()
+        }
     });
 })
 
