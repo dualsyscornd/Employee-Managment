@@ -14,7 +14,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h5>Employee List</h5>
+        <h5>Employee List <i class="link-icon data-feather="mail"></i></h5>
     </div>
     <div class="card-body">
         <table id="tables" class="table dataTable no-footer">
@@ -161,12 +161,18 @@ function EmployeeStore() {
         success: function(data) {
             $(".login-btn").prop('disabled', false);
             $(".spinner-border").addClass('d-none')
-            console.log(data)
+            $("#EmployeeStoreModal").modal('hide');
         }
     })
     // --- Ajax request --- \\
 }
 // --- === Employee Store Fucntion === --- \\
+
+
+// --- === Employee Edit Fucntion === --- \\
+function EmployeeEdit (employee_id){
+}
+// --- === Employee Edit Fucntion === --- \\
 </script>
 <!-- Ajax Script -->
 @endsection
