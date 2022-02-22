@@ -119,6 +119,11 @@ $(document).ready(function() {
                 "searchable": false,
                 "orderable": false,
             },
+            {
+                data: 'action',
+                "searchable": false,
+                "orderable": false,
+            },
         ],
         "initComplete":function( settings, json){
             feather.replace()
