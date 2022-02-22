@@ -81,8 +81,6 @@
 </div>
 <!-- Employee Store Modal  -->
 
-<button type="button" onclick="CLearIcon()"> Clear</button>
-
 
 <!-- Ajax Script -->
 <script>
@@ -112,11 +110,6 @@ $(document).ready(function() {
             {
                 data: 'employee_profile',
                 "searchable": true,
-                "orderable": false,
-            },
-            {
-                data: 'action',
-                "searchable": false,
                 "orderable": false,
             },
             {
