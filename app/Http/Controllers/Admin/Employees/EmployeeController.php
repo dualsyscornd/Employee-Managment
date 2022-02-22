@@ -22,6 +22,7 @@ class EmployeeController extends Controller
             ->addColumn('action', function ($data) {
                 return '<p><button type="button" class="btn btn-primary btn-icon" ><i data-feather="file"></i></button> </p>';
             })
+
             ->rawColumns(['action'])
             ->make(true);
     }
