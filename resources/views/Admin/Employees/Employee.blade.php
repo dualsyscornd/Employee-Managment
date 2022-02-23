@@ -40,6 +40,7 @@
             <div class="modal-body">
                 <form id="EmployeeStoreForm">
                     @csrf
+                    <input type="hidden" id="employee_id" name="employee_id"/>
                     <div class="mb-3">
                         <label for="recipient-name" class="form-label">Employee Name</label>
                         <input type="text" class="form-control required" id="employee_name" name="employee_name"
@@ -81,13 +82,12 @@
 </div>
 <!-- Employee Store Modal  -->
 
-<button type="button" onclick="CLearIcon()"> Clear</button>
-
 
 <!-- Ajax Script -->
 <script>
+
 $(document).ready(function() {
-    var dataTables = $('#tables').DataTable({
+    var $dataTables = $('#tables').DataTable({
         ordering: false,
         processing: true,
         serverSide: true,
@@ -112,11 +112,6 @@ $(document).ready(function() {
             {
                 data: 'employee_profile',
                 "searchable": true,
-                "orderable": false,
-            },
-            {
-                data: 'action',
-                "searchable": false,
                 "orderable": false,
             },
             {
@@ -168,15 +163,40 @@ function EmployeeStore() {
             $(".login-btn").prop('disabled', false);
             $(".spinner-border").addClass('d-none')
             $("#EmployeeStoreModal").modal('hide');
+            location.reload();
         }
     })
     // --- Ajax request --- \\
 }
 // --- === Employee Store Fucntion === --- \\
 
+// --- === Employee Delete Function === --- \\
+function EmployeeRemove(employee_id) {
+    $.ajax({
+        type : 'GET',
+        url : "{{ route('EmployeeRemove')}}",
+        data : {
+            employee_id : employee_id
+        },success : function (data) {
+            if (data.success == true) {
+               location.reload();
+                    alert('Success');
+                } else {
+                    alert('error');
+                }
+        }
+    })
+}
+// --- === Employee Delete Function === --- \\
 
 // --- === Employee Edit Fucntion === --- \\
-function EmployeeEdit (employee_id){
+function EmployeeEdit (employee_id,employee_name,employee_email,employee_position,employee_password){
+    $("#employee_id").val(employee_id);
+    $("#employee_name").val(employee_name);
+    $("#employee_email").val(employee_email);
+    $("#employee_position").val(employee_position);
+    $("#employee_password").val(employee_password);
+    $("#EmployeeStoreModal").modal('show');
 }
 // --- === Employee Edit Fucntion === --- \\
 </script>

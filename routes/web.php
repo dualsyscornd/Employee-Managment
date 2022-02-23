@@ -32,12 +32,13 @@ Route::group(['prefix' => 'Admin', 'middleware' => 'AdminMiddleware'], function 
     // --- === Dashboard Routes === --- \\
     Route::get('Dashboard', [DashboardController::class, 'Dashboard'])->name('Dashboard');
     // --- === Dashboard Routes === --- \\
-    
-    
+
+
     // --- === Employees Routes === --- \
     Route::get('Employees', [EmployeeController::class, 'Employees'])->name('Employees');
     Route::get('EmployeeList', [EmployeeController::class, 'EmployeeList'])->name('EmployeeList');
     Route::post('EmployeeStore', [EmployeeController::class, 'EmployeeStore'])->name('EmployeeStore');
+    Route::get('EmployeeRemove', [EmployeeController::class, 'EmployeeRemove'])->name('EmployeeRemove');
     // --- === Employees Routes === --- \
 });
 // --- === Main Group Routes === --- \\
