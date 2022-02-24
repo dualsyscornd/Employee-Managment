@@ -14,7 +14,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h5>Employee List <i class="link-icon data-feather="mail"></i></h5>
+        <h5>Employee List</h5>
     </div>
     <div class="card-body">
         <table id="tables" class="table dataTable no-footer">
@@ -40,7 +40,7 @@
             <div class="modal-body">
                 <form id="EmployeeStoreForm">
                     @csrf
-                    <input type="hidden" id="employee_id" name="employee_id"/>
+                    <input type="hidden" id="employee_id" name="employee_id" />
                     <div class="mb-3">
                         <label for="recipient-name" class="form-label">Employee Name</label>
                         <input type="text" class="form-control required" id="employee_name" name="employee_name"
@@ -85,7 +85,6 @@
 
 <!-- Ajax Script -->
 <script>
-
 $(document).ready(function() {
     var $dataTables = $('#tables').DataTable({
         ordering: false,
@@ -120,7 +119,7 @@ $(document).ready(function() {
                 "orderable": false,
             },
         ],
-        "initComplete":function( settings, json){
+        "initComplete": function(settings, json) {
             feather.replace()
         }
     });
@@ -163,34 +162,17 @@ function EmployeeStore() {
             $(".login-btn").prop('disabled', false);
             $(".spinner-border").addClass('d-none')
             $("#EmployeeStoreModal").modal('hide');
-            location.reload();
+            LoadIcon();
         }
     })
     // --- Ajax request --- \\
 }
 // --- === Employee Store Fucntion === --- \\
 
-// --- === Employee Delete Function === --- \\
-function EmployeeRemove(employee_id) {
-    $.ajax({
-        type : 'GET',
-        url : "{{ route('EmployeeRemove')}}",
-        data : {
-            employee_id : employee_id
-        },success : function (data) {
-            if (data.success == true) {
-               location.reload();
-                    alert('Success');
-                } else {
-                    alert('error');
-                }
-        }
-    })
-}
-// --- === Employee Delete Function === --- \\
-
 // --- === Employee Edit Fucntion === --- \\
-function EmployeeEdit (employee_id,employee_name,employee_email,employee_position,employee_password){
+function EmployeeEdit(
+    employee_id, employee_name, employee_email, employee_position, employee_password
+) {
     $("#employee_id").val(employee_id);
     $("#employee_name").val(employee_name);
     $("#employee_email").val(employee_email);
@@ -199,6 +181,31 @@ function EmployeeEdit (employee_id,employee_name,employee_email,employee_positio
     $("#EmployeeStoreModal").modal('show');
 }
 // --- === Employee Edit Fucntion === --- \\
+
+
+// --- === Employee Delete Function === --- \\
+function EmployeeRemove(employee_id) {
+    $.ajax({
+        type: 'GET',
+        url: "{{ route('EmployeeRemove')}}",
+        data: {
+            employee_id: employee_id
+        },
+        success: function(data) {
+            if (data['success'] == true) {
+                LoadIcon();
+            }
+        }
+    })
+}
+// --- === Employee Delete Function === --- \\
+
+// --- === Icon Loader Fucntion === --- \
+function LoadIcon() {
+    $("#tables").dataTable().fnPageChange('first', 1);
+    feather.replace();
+}
+// --- === Icon Loader Fucntion === --- \
 </script>
 <!-- Ajax Script -->
 @endsection

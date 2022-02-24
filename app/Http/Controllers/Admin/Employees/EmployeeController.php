@@ -21,14 +21,14 @@ class EmployeeController extends Controller
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
                 return '
-                <button type="button" class="btn btn-warning btn-icon"
+                <button type="button" class="btn btn-warning btn-icon text-white"
                 onclick=\'EmployeeEdit(
                 ' . $data->employee_id . ',
                 "' . $data->employee_name . '",
                 "' . $data->employee_email . '",
                 "' . $data->employee_position . '",
                 "' . $data->employee_password . '"
-                )\'><i data-feather="file"></i></button>
+                )\'><i data-feather="edit-2"></i></button>
                 <button type="button" class="btn btn-danger btn-icon mx-2" onclick="EmployeeRemove(' . $data->employee_id . ')"><i data-feather="trash"></i></button>
                 ';
             })
@@ -84,27 +84,32 @@ class EmployeeController extends Controller
 
             // Delete Old Profile And add new one--------------------------------
             if ($req->hasFile('employee_profile')) {
-                $dbname  = DB::table('employees')->where('employee_id', $req->input('employee_id'))->first();
-                $imageName = 'employee_image_' . rand(1000, 9000) . '.' . $req->file('employee_profile')->extension();
-                $req->file('employee_profile')->move('public/images/employee_profile/', $imageName);
-                if ($dbname->employee_profile != "" && $dbname->employee_profile != null) {
-                    if (file_exists("public/images/employee_profile/" . $dbname->employee_profile)) {
-                        unlink("public/images/employee_profile/" . $dbname->employee_profile);
+
+                $profileName = DB::table('employees')
+                    ->where('employee_id', $req->input('employee_id'))
+                    ->pluck('employee_profile');
+
+                if ($profileName[0] != "" && $profileName[0] != null) {
+                    if (file_exists("public/images/employee_profile/" . $profileName[0])) {
+                        unlink("public/images/employee_profile/" . $profileName[0]);
                     }
                 } else {
-                    $imageName = $dbname->employee_profile;
+                    $imageName = $profileName;
                 }
+
+                $imageName = 'employee_image_' . rand(1000, 9000) . '.' . $req->file('employee_profile')->extension();
+                $req->file('employee_profile')->move('public/images/employee_profile/', $imageName);
             }
-            $dbupdate =  DB::table('employees')
-            ->where('employee_id', $req->input('employee_id'))
-            ->update([
-                'employee_name' => $req->input('employee_name'),
-                'employee_email' => $req->input('employee_email'),
-                'employee_position' => $req->input('employee_position'),
-                'employee_password' => $req->input('employee_password'),
-                'employee_profile' => $imageName,
-            ]);
-            return response()->json(['success' => true, 'message' => 'Employee is created successfully']);
+            $data = DB::table('employees')
+                ->where('employee_id', $req->input('employee_id'))
+                ->update([
+                    'employee_name' => $req->input('employee_name'),
+                    'employee_email' => $req->input('employee_email'),
+                    'employee_position' => $req->input('employee_position'),
+                    'employee_password' => $req->input('employee_password'),
+                    'employee_profile' => $imageName,
+                ]);
+            return response()->json(['success' => true, 'message' => 'Employee is updated successfully']);
         }
 
     }
@@ -112,7 +117,7 @@ class EmployeeController extends Controller
     // Employee Remove --------------------------------------
     public function EmployeeRemove(Request $req)
     {
-        $data  = DB::table('employees')->where('employee_id', $req->input('employee_id'))->first();
+        $data = DB::table('employees')->where('employee_id', $req->input('employee_id'))->first();
         $removefromdb = DB::table('employees')->where('employee_id', $req->input('employee_id'))->delete();
         // --- === Delete Image === --- //
         if (file_exists("public/images/employee_profile/" . $data->employee_profile)) {
